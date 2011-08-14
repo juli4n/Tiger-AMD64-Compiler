@@ -1,0 +1,12 @@
+Tiger Compiler for AMD64
+
+Requirements:
+Moscow ML: http://www.itu.dk/~sestoft/mosml.html
+GCC targeting AMD64
+
+Building:
+./make
+
+Compiler usage:
+
+./tiger source.tig
