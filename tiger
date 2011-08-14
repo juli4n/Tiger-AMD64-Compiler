@@ -1,0 +1,24 @@
+#!/bin/sh
+
+tigerpath=./
+
+runtimebin=$tigerpath/runtime
+gclib=$tigerpath/gc/lib
+cc=gcc
+ccoptions=-g
+case $1 in
+	*.tig)
+		name=`basename $1 .tig`
+		$tigerpath/tc -ir -canon -code -escapes  $1 > ${name}.s
+		$cc $ccoptions $runtimebin/runtime.c $gclib/libgc.so ${name}.s -o $name;;
+	-)
+		name=`tempfile`
+		$tigerpath/tc -ir -canon -code -escapes  > ${name}.s
+		$cc $ccoptions $runtimebin/runtime.c $gclib/libgc.so ${name}.s 
+		rm ${name}.s;;	
+	-h|--help)
+		echo "Usar: tiger sorce.tig";;
+	-v|--version)
+		echo "Tiger Compiler - Target AMD64 "
+		echo "Julian Gutierrez Oschmann - Diciembre 2006";;
+esac

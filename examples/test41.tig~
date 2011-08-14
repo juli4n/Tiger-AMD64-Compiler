@@ -1,0 +1,11 @@
+/* local types hide global */
+let
+	type a = int
+	var v:a := 0
+in
+	let
+		type a = string
+	in
+		v:="Hola"
+	end
+end
